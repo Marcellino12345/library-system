@@ -28,4 +28,4 @@ Simple Library Information System
 9. Akses di browser: http://127.0.0.1:8000
 
 ## Author
-Nama Kamu - NIM Kamu - Kelas
+Marcellino HR Sitanggang - 2410631250098 - 5D
