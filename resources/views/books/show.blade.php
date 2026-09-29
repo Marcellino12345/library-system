@@ -4,10 +4,13 @@
 
 @section('content')
     <h2>Detail Buku</h2>
-    <p>ID: {{ $id }}</p>
+    <p>ID: {{ $book->id }}</p>
+    <p>Judul: {{ $book->title }}</p>
+    <p>Penulis: {{ $book->author }}</p>
+    <p>Tahun Terbit: {{ $book->year }}</p>
 
-    @if($stock > 0)
-        <p>Buku tersedia. Stok: {{ $stock }}</p>
+    @if($book->stock > 0)
+        <p>Buku tersedia. Stok: {{ $book->stock }}</p>
     @else
         <p>Buku sedang habis.</p>
     @endif
