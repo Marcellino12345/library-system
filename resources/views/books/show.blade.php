@@ -1,19 +1,24 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detail Buku</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 30px auto; padding: 0 16px; }
+        td { padding: 6px 12px 6px 0; }
+    </style>
+</head>
+<body>
+    <h1>Detail Buku</h1>
 
-@section('title', 'Detail Buku')
+    <table>
+        <tr><td><b>Judul</b></td><td>: {{ $book->title }}</td></tr>
+        <tr><td><b>Penulis</b></td><td>: {{ $book->author }}</td></tr>
+        <tr><td><b>Tahun</b></td><td>: {{ $book->year }}</td></tr>
+        <tr><td><b>Stok</b></td><td>: {{ $book->stock }}</td></tr>
+    </table>
 
-@section('content')
-    <h2>Detail Buku</h2>
-    <p>ID: {{ $book->id }}</p>
-    <p>Judul: {{ $book->title }}</p>
-    <p>Penulis: {{ $book->author }}</p>
-    <p>Tahun Terbit: {{ $book->year }}</p>
-
-    @if($book->stock > 0)
-        <p>Buku tersedia. Stok: {{ $book->stock }}</p>
-    @else
-        <p>Buku sedang habis.</p>
-    @endif
-
-    <a href="/books">&larr; Kembali ke daftar buku</a>
-@endsection
+    <p><a href="{{ route('books.index') }}">Kembali</a></p>
+</body>
+</html>
