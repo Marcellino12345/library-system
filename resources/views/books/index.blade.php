@@ -30,6 +30,7 @@
             <tr>
                 <th>Judul</th>
                 <th>Penulis</th>
+                <th>Kategori</th>
                 <th>Tahun</th>
                 <th>Stok</th>
                 <th>Aksi</th>
@@ -40,6 +41,7 @@
                 <tr>
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
+                    <td>{{ $book->category?->name ?? 'Belum ada kategori' }}</td>
                     <td>{{ $book->year }}</td>
                     <td>{{ $book->stock }}</td>
                     <td>
@@ -55,7 +57,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5">Belum ada data buku.</td>
+                    <td colspan="6">Belum ada data buku.</td>
                 </tr>
             @endforelse
         </tbody>

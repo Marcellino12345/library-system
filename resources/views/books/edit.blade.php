@@ -8,7 +8,7 @@
         body { font-family: Arial, sans-serif; max-width: 600px; margin: 30px auto; padding: 0 16px; }
         .field { margin-bottom: 14px; }
         label { display: block; font-weight: bold; margin-bottom: 4px; }
-        input { width: 100%; padding: 8px; box-sizing: border-box; }
+        input, select { width: 100%; padding: 8px; box-sizing: border-box; }
         .is-invalid { border: 1px solid #c0392b; }
         .error-text { color: #c0392b; font-size: 14px; margin: 4px 0 0; }
         .btn { padding: 8px 14px; background: #2563eb; color: #fff; border: 0; cursor: pointer; }
@@ -57,6 +57,23 @@
                    class="@error('stock') is-invalid @enderror"
                    value="{{ old('stock', $book->stock) }}">
             @error('stock')
+                <p class="error-text">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="field">
+            <label for="category_id">Kategori</label>
+            <select id="category_id" name="category_id"
+                    class="@error('category_id') is-invalid @enderror">
+                <option value="">Pilih kategori</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"
+                        @selected(old('category_id', $book->category_id) == $category->id)>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('category_id')
                 <p class="error-text">{{ $message }}</p>
             @enderror
         </div>

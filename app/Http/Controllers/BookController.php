@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -10,13 +11,14 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
+        $books = Book::with('category')->get();
         return view('books.index', compact('books'));
     }
 
     public function create()
     {
-        return view('books.create');
+        $categories = Category::orderBy('name')->get();
+        return view('books.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -36,7 +38,8 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('books.edit', compact('book'));
+        $categories = Category::orderBy('name')->get();
+        return view('books.edit', compact('book', 'categories'));
     }
 
     public function update(Request $request, Book $book)
@@ -72,6 +75,7 @@ class BookController extends Controller
                 'required', 'integer', 'digits:4', 'min:1900', 'max:' . date('Y'),
             ],
             'stock' => ['required', 'integer', 'min:0', 'max:10000'],
+            'category_id' => ['required', 'exists:categories,id'],
         ];
     }
 
@@ -94,6 +98,8 @@ class BookController extends Controller
             'stock.integer'   => 'Stok harus berupa angka bulat.',
             'stock.min'       => 'Stok tidak boleh negatif.',
             'stock.max'       => 'Stok maksimal 10.000.',
+            'category_id.required' => 'Kategori wajib dipilih.',
+            'category_id.exists'   => 'Kategori yang dipilih tidak tersedia.',
         ];
     }
 }
