@@ -12,6 +12,7 @@
         .alert { background: #e6f7ea; border: 1px solid #2e8b57; color: #1e6b3f; padding: 10px; margin: 12px 0; }
         .btn { padding: 8px 14px; background: #2563eb; color: #fff; border: 0; text-decoration: none; cursor: pointer; }
         .btn-danger { background: #c0392b; padding: 4px 10px; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
         footer { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px; color: #555; }
     </style>
 </head>
@@ -23,7 +24,14 @@
         <div class="alert">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('books.create') }}" class="btn">+ Tambah Buku</a>
+    <div class="topbar">
+        <a href="{{ route('books.create') }}" class="btn">+ Tambah Buku</a>
+
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
 
     <table>
         <thead>
