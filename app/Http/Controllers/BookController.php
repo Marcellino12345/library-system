@@ -33,6 +33,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
+        $book->load('category');
         return view('books.show', compact('book'));
     }
 
@@ -54,6 +55,11 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        if ($book->borrowingDetails()->exists()) {
+            return redirect()->route('books.index')
+                ->with('error', 'Buku tidak dapat dihapus karena sudah tercatat dalam transaksi peminjaman.');
+        }
+
         $book->delete();
 
         return redirect()->route('books.index')

@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tambah Buku</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 30px auto; padding: 0 16px; }
-        .field { margin-bottom: 14px; }
-        label { display: block; font-weight: bold; margin-bottom: 4px; }
-        input, select { width: 100%; padding: 8px; box-sizing: border-box; }
-        .is-invalid { border: 1px solid #c0392b; }
-        .error-text { color: #c0392b; font-size: 14px; margin: 4px 0 0; }
-        .btn { padding: 8px 14px; background: #2563eb; color: #fff; border: 0; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <h1>Tambah Buku</h1>
+@extends('layouts.app')
+
+@section('title', 'Tambah Buku')
+
+@section('content')
+    <h2>Tambah Buku</h2>
 
     <form action="{{ route('books.store') }}" method="POST" novalidate>
         @csrf
@@ -80,5 +68,4 @@
         <button type="submit" class="btn">Simpan</button>
         <a href="{{ route('books.index') }}">Kembali</a>
     </form>
-</body>
-</html>
+@endsection
